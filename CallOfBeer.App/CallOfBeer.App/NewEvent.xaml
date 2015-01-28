@@ -22,13 +22,14 @@
 
         <!-- Corp de la page -->
         <Grid Grid.Row="1">
-            <TextBox HorizontalAlignment="Left" Margin="10,10.333,0,0" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="Nom de l'évènement" VerticalAlignment="Top" Width="380" x:Name="event_name"/>
-            <DatePicker HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="110" x:Name="event_date"/>
+            <TextBox HorizontalAlignment="Left" Margin="10,10.333,0,0" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="Nom de l'évènement" VerticalAlignment="Top" Width="380" x:Name="event_name" />
+            <DatePicker HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="160" x:Name="event_date" HorizontalContentAlignment="Center"/>
             <TextBox HorizontalAlignment="Left" Margin="10,128,0,0" TextWrapping="Wrap" PlaceholderText="Nom de l'adresse" VerticalAlignment="Top" Width="380" x:Name="event_adressname"/>
             <TextBox HorizontalAlignment="Left" Margin="10,186,0,0" TextWrapping="Wrap" PlaceholderText="Adresse" VerticalAlignment="Top" Width="380" x:Name="event_adress"/>
             <TextBox HorizontalAlignment="Left" Margin="10,240,0,0" TextWrapping="Wrap" PlaceholderText="Code Postale" VerticalAlignment="Top" Width="380" x:Name="event_zip"/>
             <TextBox HorizontalAlignment="Left" Margin="10,300,0,0" TextWrapping="Wrap" PlaceholderText="Ville" VerticalAlignment="Top" Width="380" x:Name="event_city"/>
             <TextBox HorizontalAlignment="Left" Margin="10,354,0,0" TextWrapping="Wrap" PlaceholderText="Pays" VerticalAlignment="Top" Width="380" x:Name="event_country"/>
+            <TimePicker HorizontalAlignment="Left" Margin="221,61,0,0" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" x:Name="event_time"/>
         </Grid>
 
         <!-- Footer de la page -->

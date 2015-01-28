@@ -13,8 +13,7 @@
     <Grid Loaded="MainPageLoaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*" />
-            <RowDefinition Height="8*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" d:IsLocked="True" >
@@ -23,79 +22,71 @@
         </Grid>
 
         <!--Block centrale-->
-        <Grid Grid.Row="1"  >
-            <Grid.Background>
-                <ImageBrush ImageSource="ms-appx:/Assets/background.png" Stretch="Fill"/>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1.25*"/>
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1">
 
-            <!--Colone de gauche-->
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Margin="0,0,0,10.222">
+            <!-- Row 0 -->
+            <Grid Grid.Row="0" Margin="0,10,0,0.167">
+                <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Margin="10,0">
+                    <Maps:MapControl x:Name="MapHome" MapServiceToken="AsP_0Zt_iFexgQXpdalngpR2zo3vLQss6rU8Ca3MyI8sMgpLCmQkuV09y5Ko77sl" Margin="-8,0"/>
+                </Grid>
+            </Grid>
+
+            <!--Row 1-->
+            <Grid Grid.Row="1">
+                <Grid Margin="0,0,0,10.222">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
-                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBlock x:Name="Describ_left" Text="Répondez à l'appel !" FontSize="17" TextAlignment="Center" Foreground="#FF060606" Margin="0,10"  FontWeight="Medium"/>
+                        <TextBlock x:Name="Describ_left" Text="Répondez à l'appel !" FontSize="17" TextAlignment="Center" Foreground="White" Margin="0,10"  FontWeight="Medium"/>
                     </Grid>
 
                     <Grid Grid.Row="1">
-                        <ListView FontWeight="Bold" x:Name="EventListView" Foreground="Black" >
+                        <!--<ListBox x:Name="EventListView" Foreground="White" ItemsSource="{Binding}">
+                            <ListBox.DataContext>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="2">
+                                        <TextBlock Text="{Binding name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.DataContext>
+                        </ListBox>
+                        <ListView FontWeight="Bold" x:Name="EventListView" Foreground="White" ItemsSource="{Binding}">
+                            <ListView.DataContext>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="2">
+                                        <TextBlock Text="{Binding name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.DataContext>
+
                             <x:String>Appel de la Bière 01</x:String>
                             <x:String>On veux de la bière !</x:String>
                             <x:String>Boire un petit coup ..</x:String>
-                            <x:String>Désolé pour hiére soir</x:String>
+                            <x:String>Désolé pour hier soir</x:String>
                             <x:String>Qui a un décap' ?</x:String>
                             <x:String>Verre plain, je te vide</x:String>
                             <x:String>Verre vide je te plainds</x:String>
-                        </ListView>
+                        </ListView>-->
                     </Grid>
 
-                </Grid>
-
-                <!--Zone de boutons-->
-                <Grid Grid.Row="1">
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Button x:Name="New_Call"  Content="Lancer un appel" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="158" Foreground="Black" BorderBrush="Black" Tapped="NewCall"/>
-                        <Button x:Name="Profile"   Content="Mon Compt" HorizontalAlignment="Left" Height="55"  Grid.Row="1" VerticalAlignment="Top" Width="158" Foreground="Black" BorderBrush="Black" />
-                    </StackPanel>
                 </Grid>
             </Grid>
 
-            <!--Colone de droite-->
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="13*"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <TextBlock x:Name="Describe_right" Text="Chercher autour de vous" FontSize="17" TextAlignment="Center" Foreground="#FF060606" Margin="0,10" FontWeight="Medium"/>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="185*"/>
-                            <RowDefinition Height="41*"/>
-                        </Grid.RowDefinitions>
-                        <Maps:MapControl x:Name="MapHome" MapServiceToken="AsP_0Zt_iFexgQXpdalngpR2zo3vLQss6rU8Ca3MyI8sMgpLCmQkuV09y5Ko77sl" Grid.RowSpan="2">
-
-
-                        </Maps:MapControl>
-                    </Grid>
-                </Grid>
+            <Grid Grid.Row="2">
+                <Button x:Name="New_Call"  Content="Lancer un appel"  Height="55" Width="158" Foreground="White" BorderBrush="White" Tapped="NewCall" Margin="10,0,0,0"/>
+                <Button x:Name="Profile"   Content="Mon Compte"  Height="45" Width="159" Foreground="White" BorderBrush="White" Margin="230,0,0,0" />
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="2"></Grid>
+
     </Grid>
 </Page>
