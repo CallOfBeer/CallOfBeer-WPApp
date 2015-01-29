@@ -37,7 +37,7 @@ namespace CallOfBeer.App
 
         private void Button_Taped(object sender, TappedRoutedEventArgs e)
         {
-            Frame.GoBack();
+            Frame.Navigate(typeof(MainPage));
         }
 
         private async void Launch_Event(object sender, TappedRoutedEventArgs e)
@@ -75,7 +75,10 @@ namespace CallOfBeer.App
                 };
 
                 //Envois à l'api
-                CallApi.PostEvent(eventToSend);
+                var response = await CallApi.PostEvent(eventToSend);
+
+                if (response.IsSuccessStatusCode)
+                    Frame.Navigate(typeof(MainPage));
             }
         }
     }

@@ -52,7 +52,7 @@ namespace CallOfBeer.API
         /// PostEvent : Envois les données d'un nouveau évènement
         /// </summary>
         /// <param name="newEvent">AddEvents : class avec toute les données chargées</param>
-        public async void PostEvent(AddEvents newEvent)
+        public async Task<HttpResponseMessage> PostEvent(AddEvents newEvent)
         {
             using (HttpClient client = new HttpClient(new HttpClientHandler()))
             {
@@ -61,6 +61,7 @@ namespace CallOfBeer.API
                 try
                 {
                     HttpResponseMessage response = await client.PostAsJsonAsync("http://api.callofbeer.com/events", newEvent);
+                    return response;
                 }
                 catch (Exception)
                 {
