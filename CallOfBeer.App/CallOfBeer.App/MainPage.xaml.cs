@@ -36,34 +36,36 @@ namespace CallOfBeer.App
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
-            LocationService.LoadMap(MapHome);
         }
 
         private async void MainPageLoaded(object sender, RoutedEventArgs e)
         {
-            //Liste des évènements à retourner
+            // Liste des évènements à retourner
             List<Events> listEventAvailiable = null;
             List<string> frontData = new List<string>();
 
+            // Affichage de la map
             LocationService.LoadMap(MapHome);
             LocationService.GetMapCornerPosition(MapHome);
 
+            // Coordonnées des coins de la map
             topLeft = LocationService.topLeft;
             bottomRight = LocationService.bottomRight;
 
-            if (MapHome.LoadingStatus != MapLoadingStatus.Loading)
+            // Liste des évènements
+            listEventAvailiable = await this._apiService.GetEvents(topLeft.Latitude, topLeft.Longitude, bottomRight.Latitude, bottomRight.Longitude);
+            if (listEventAvailiable.Count != 0)
             {
-                listEventAvailiable = await this._apiService.GetEvents(topLeft.Latitude, topLeft.Longitude, bottomRight.Latitude, bottomRight.Longitude);
-
-                if (listEventAvailiable.Count != 0)
+                EventListView.DataContext = listEventAvailiable;
+                foreach (var item in listEventAvailiable)
                 {
-                    EventListView.DataContext = listEventAvailiable;
+                    LocationService.AddMapLocation(MapHome, item);
                 }
-                else
-                {
-                    //TODO : afficher qu'il n'y a pas d'events
-                    frontData.Add("Aucun évènement n'a été détecté.");
-                }
+            }
+            else
+            {
+                //TODO : afficher qu'il n'y a pas d'events
+                frontData.Add("Aucun évènement n'a été détecté.");
             }
         }
 

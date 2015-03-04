@@ -50,7 +50,7 @@
                     </Grid>
 
                     <Grid Grid.Row="1">
-                        <ListBox x:Name="EventListView" Foreground="White" ItemsSource="{Binding}">
+                        <ListBox x:Name="EventListView" Foreground="White" ItemsSource="{Binding EventListView}">
                             <ListBox.DataContext>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" Margin="2">

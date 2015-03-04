@@ -37,10 +37,10 @@ namespace CallOfBeer.App.Class
             appMap.Center = returnedPosition.Coordinate.Point;
 
             //TODO Afficher les élements de la carte
-            userMapIcon.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/customicon.png"));
-            userMapIcon.Location = appMap.Center;
+            //userMapIcon.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/customicon.png"));
+            userMapIcon.NormalizedAnchorPoint = new Point(0.5, 1);
+            userMapIcon.Location = returnedPosition.Coordinate.Point;
             userMapIcon.Title = "Votre position";
-            userMapIcon.NormalizedAnchorPoint = new Point(0.25, 0.9);
             appMap.MapElements.Add(userMapIcon);
         }
 
@@ -86,6 +86,24 @@ namespace CallOfBeer.App.Class
 
             mapControl.GetLocationFromOffset(new Point(mapControl.ActualWidth, mapControl.ActualHeight), out geoP);
             LocationService.bottomRight = geoP.Position;
+        }
+
+        /// <summary>
+        /// Ajout une icone d'un évenement sur la map.
+        /// </summary>
+        /// <param name="mapControler">MapControle de l'application</param>
+        /// <param name="events">Evenement à afficher</param>
+        public static void AddMapLocation(MapControl mapControler,  Events events)
+        {
+            MapIcon mapEventLocation = new MapIcon();
+            //mapEventLocation.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/customicon.png"));
+            mapEventLocation.NormalizedAnchorPoint = new Point(0.5, 1);
+            mapEventLocation.Location = new Geopoint(new BasicGeoposition(){
+                Longitude = events.adress.Geolocalisation[0],
+                Latitude = events.adress.Geolocalisation[1]
+            });
+            mapEventLocation.Title = events.name;
+            mapControler.MapElements.Add(mapEventLocation);
         }
     }
 }
