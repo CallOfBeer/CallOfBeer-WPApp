@@ -40,11 +40,12 @@ namespace CallOfBeer.App.Class
             userMapIcon.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/customicon.png"));
             userMapIcon.Location = appMap.Center;
             userMapIcon.Title = "Votre position";
-            userMapIcon.NormalizedAnchorPoint = new Point(0.5, 0.5);
+            userMapIcon.NormalizedAnchorPoint = new Point(0.25, 0.9);
+            appMap.MapElements.Add(userMapIcon);
         }
 
         /// <summary>
-        /// Determine la position géographique de l'utilisateur
+        /// Méthode privé pour determine la position géographique de l'utilisateur
         /// </summary>
         /// <returns>Géoposition de l'utilisateur</returns>
         private static async Task<Geoposition> UserPosition()
@@ -63,13 +64,15 @@ namespace CallOfBeer.App.Class
             }
         }
 
-
+        /// <summary>
+        /// Methode public pour récupérer la position de l'utilisateur
+        /// </summary>
+        /// <returns>Geoposition de l'utilisateur avec les coordonnées gps</returns>
         public static async Task<Geoposition> GetUserPosition()
         {
             Geoposition userPosition = await UserPosition();
             return userPosition;
         }
-
 
         /// <summary>
         /// Retourne les coordonnées des coté de la map

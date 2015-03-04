@@ -43,6 +43,7 @@ namespace CallOfBeer.App
         {
             //Liste des évènements à retourner
             List<Events> listEventAvailiable = null;
+            List<string> frontData = new List<string>();
 
             LocationService.LoadMap(MapHome);
             LocationService.GetMapCornerPosition(MapHome);
@@ -56,15 +57,12 @@ namespace CallOfBeer.App
 
                 if (listEventAvailiable.Count != 0)
                 {
-                    foreach (var item in listEventAvailiable)
-                    {
-                        //TODO Afficher les elements sur la map
-
-                    }
+                    EventListView.DataContext = listEventAvailiable;
                 }
                 else
                 {
                     //TODO : afficher qu'il n'y a pas d'events
+                    frontData.Add("Aucun évènement n'a été détecté.");
                 }
             }
         }

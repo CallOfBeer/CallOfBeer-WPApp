@@ -60,13 +60,17 @@ namespace CallOfBeer.App
                 //convertis le DateTime en Time Stamp
                 TimeSpan toTimeSpan = getEventDate.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0).ToUniversalTime();
 
+                string localAdressLong = eventPosition.Coordinate.Longitude.ToString();
+                string localAdressLat = eventPosition.Coordinate.Latitude.ToString();
+
+
                 //Création de l'objet à envoyer
                 AddEvents eventToSend = new AddEvents()
                 {
                     eventName = event_name.Text.ToString(),
                     eventDate = ((int)toTimeSpan.TotalSeconds).ToString(),
-                    addressLon = eventPosition.Coordinate.Longitude.ToString(),
-                    addressLat = eventPosition.Coordinate.Latitude.ToString(),
+                    addressLon = localAdressLong.Replace(",","."),
+                    addressLat = localAdressLat.Replace(",", "."),
                     addressAddress = event_adress.Text.ToString(),
                     addressZip = event_zip.Text.ToString(),
                     addressCity = event_city.Text.ToString(),
