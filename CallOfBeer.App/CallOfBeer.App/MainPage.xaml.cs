@@ -38,7 +38,7 @@ namespace CallOfBeer.App
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
-        private async void MainPageLoaded(object sender, RoutedEventArgs e)
+        private void MainPageLoaded(object sender, RoutedEventArgs e)
         {
             // Liste des évènements à retourner
             List<Events> listEventAvailiable = null;
@@ -53,23 +53,35 @@ namespace CallOfBeer.App
             bottomRight = LocationService.bottomRight;
 
             // Liste des évènements
-            listEventAvailiable = await this._apiService.GetEvents(topLeft.Latitude, topLeft.Longitude, bottomRight.Latitude, bottomRight.Longitude);
-            if (listEventAvailiable.Count != 0)
+            /*try
             {
-                EventListView.DataContext = listEventAvailiable;
-                foreach (var item in listEventAvailiable)
+                Task<List<Events>> response = this._apiService.GetEvents(topLeft.Latitude, topLeft.Longitude, bottomRight.Latitude, bottomRight.Longitude);
+                response.Wait();
+                listEventAvailiable = response.Result;
+
+                if (listEventAvailiable.Count != 0 && listEventAvailiable != null)
                 {
-                    LocationService.AddMapLocation(MapHome, item);
+                    EventListView.DataContext = listEventAvailiable;
+                    foreach (var item in listEventAvailiable)
+                    {
+                        LocationService.AddMapLocation(MapHome, item);
+                    }
+                }
+
+                else
+                {
+                    //TODO : afficher qu'il n'y a pas d'events
+                    frontData.Add("Aucun évènement n'a été détecté.");
                 }
             }
-            else
+
+            catch (NullReferenceException ex)
             {
-                //TODO : afficher qu'il n'y a pas d'events
                 frontData.Add("Aucun évènement n'a été détecté.");
-            }
+            }*/
         }
 
-        private void NewCall(object sender, TappedRoutedEventArgs e)
+        private void NewCall(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(NewEvent));
         }
