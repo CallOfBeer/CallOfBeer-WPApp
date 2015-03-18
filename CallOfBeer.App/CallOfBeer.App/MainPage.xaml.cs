@@ -31,6 +31,7 @@ namespace CallOfBeer.App
         private BasicGeoposition bottomRight;
         private ObservableCollection<Events> eventListView = new ObservableCollection<Events>();
         private APITools _apiService = new APITools();
+        private API.API _api = new API.API();
 
         public MainPage()
         {
@@ -38,7 +39,7 @@ namespace CallOfBeer.App
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
-        private void MainPageLoaded(object sender, RoutedEventArgs e)
+        private async void MainPageLoaded(object sender, RoutedEventArgs e)
         {
             // Liste des évènements à retourner
             List<Events> listEventAvailiable = null;
@@ -53,15 +54,16 @@ namespace CallOfBeer.App
             bottomRight = LocationService.bottomRight;
 
             // Liste des évènements
-            /*try
+            try
             {
-                Task<List<Events>> response = this._apiService.GetEvents(topLeft.Latitude, topLeft.Longitude, bottomRight.Latitude, bottomRight.Longitude);
-                response.Wait();
-                listEventAvailiable = response.Result;
+                //Task<List<Events>> response = this._apiService.GetEvents(topLeft.Latitude, topLeft.Longitude, bottomRight.Latitude, bottomRight.Longitude);
+                //response.Wait();
+                IEnumerable<Events> machin = await this._api.GetEvents(topLeft.Latitude, topLeft.Longitude, bottomRight.Latitude, bottomRight.Longitude);
+                listEventAvailiable = machin.ToList();
 
                 if (listEventAvailiable.Count != 0 && listEventAvailiable != null)
                 {
-                    EventListView.DataContext = listEventAvailiable;
+                    //EventListView.DataContext = listEventAvailiable;
                     foreach (var item in listEventAvailiable)
                     {
                         LocationService.AddMapLocation(MapHome, item);
@@ -78,7 +80,7 @@ namespace CallOfBeer.App
             catch (NullReferenceException ex)
             {
                 frontData.Add("Aucun évènement n'a été détecté.");
-            }*/
+            }
         }
 
         private void NewCall(object sender, RoutedEventArgs e)

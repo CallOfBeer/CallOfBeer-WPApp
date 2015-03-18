@@ -35,8 +35,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AddEvents.cs" />
+    <Compile Include="API.cs" />
     <Compile Include="APITools.cs" />
+    <Compile Include="COBProvider.cs" />
     <Compile Include="Events.cs" />
+    <Compile Include="HttpProvider.cs" />
+    <Compile Include="Models\EventPost.cs" />
+    <Compile Include="Models\EventUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
