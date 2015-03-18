@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +9,20 @@ namespace CallOfBeer.API.Models
 {
     class EventUpdate : EventPost
     {
-        public int eventId { get; set; }
+        [JsonProperty("eventId")]
+        public int EventId { get; set; }
+
         public EventUpdate(EventPost eventPost)
         {
-            this.addressAddress = eventPost.addressAddress;
-            this.addressCity = eventPost.addressCity;
-            this.addressCountry = eventPost.addressCountry;
-            this.addressLat = eventPost.addressLat;
-            this.addressLon = eventPost.addressLon;
-            this.addressName = eventPost.addressName;
-            this.addressZip = eventPost.addressZip;
-            this.eventDate = eventPost.eventDate;
-            this.eventName = eventPost.eventName;
+            this.AddressAddress = eventPost.AddressAddress;
+            this.AddressCity = eventPost.AddressCity;
+            this.AddressCountry = eventPost.AddressCountry;
+            this.AddressLat = eventPost.AddressLat;
+            this.AddressLon = eventPost.AddressLon;
+            this.AddressName = eventPost.AddressName;
+            this.AddressZip = eventPost.AddressZip;
+            this.EventDate = eventPost.EventDate;
+            this.EventName = eventPost.EventName;
         }
     }
 }

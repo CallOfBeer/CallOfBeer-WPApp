@@ -1,4 +1,5 @@
 ﻿using CallOfBeer.API;
+using CallOfBeer.API.Models;
 using CallOfBeer.App.Class;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,12 @@ namespace CallOfBeer.App
     /// </summary>
     public sealed partial class NewEvent : Page
     {
-        private APITools CallApi = new APITools();
+        private APIService _apiService;
 
         public NewEvent()
         {
             this.InitializeComponent();
+            this._apiService = new APIService();
 
             this.event_name.KeyUp += new KeyEventHandler(CloseKeyBoard);
             this.event_adressname.KeyUp += new KeyEventHandler(CloseKeyBoard);
@@ -66,30 +68,32 @@ namespace CallOfBeer.App
                     0);
 
                 //convertis le DateTime en Time Stamp
-                TimeSpan toTimeSpan = getEventDate.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0).ToUniversalTime();
+                //TimeSpan toTimeSpan = getEventDate.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0).ToUniversalTime();
+                int timeSpan = (int)getEventDate.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                Geoposition test;
 
-                string localAdressLong = eventPosition.Coordinate.Longitude.ToString();
-                string localAdressLat = eventPosition.Coordinate.Latitude.ToString();
+                double localAdressLong = eventPosition.Coordinate.Longitude;
+                double localAdressLat = eventPosition.Coordinate.Latitude;
 
 
                 //Création de l'objet à envoyer
-                AddEvents eventToSend = new AddEvents()
+                EventPost eventToSend = new EventPost()
                 {
-                    eventName = event_name.Text.ToString(),
-                    eventDate = ((int)toTimeSpan.TotalSeconds).ToString(),
-                    addressLon = localAdressLong.Replace(",", "."),
-                    addressLat = localAdressLat.Replace(",", "."),
-                    addressAddress = event_adress.Text.ToString(),
-                    addressZip = event_zip.Text.ToString(),
-                    addressCity = event_city.Text.ToString(),
-                    addressCountry = event_country.Text.ToString(),
-                    addressName = event_adressname.Text.ToString()
+                    EventName = event_name.Text,
+                    EventDate = timeSpan,
+                    AddressLon = localAdressLong,
+                    AddressLat = localAdressLat,
+                    AddressAddress = event_adress.Text,
+                    AddressZip = Convert.ToInt32(event_zip.Text),
+                    AddressCity = event_city.Text,
+                    AddressCountry = event_country.Text,
+                    AddressName = event_adressname.Text
                 };
 
                 //Envois à l'api
-                var response = await CallApi.PostEvent(eventToSend);
+                bool response = await this._apiService.PostEventAsync(eventToSend);
 
-                if (response.IsSuccessStatusCode)
+                if (response)
                     Frame.Navigate(typeof(MainPage));
             }
         }
@@ -100,7 +104,6 @@ namespace CallOfBeer.App
             {
                 //Definit l'évènement comme traité
                 e.Handled = true;
-                this.Focus(FocusState.)
             }
         }
 
