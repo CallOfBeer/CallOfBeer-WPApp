@@ -18,6 +18,7 @@ using CallOfBeer.App.Class;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls.Maps;
 using System.Threading.Tasks;
+using CallOfBeer.API.Models;
 
 // Pour en savoir plus sur le modèle d'élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -29,20 +30,20 @@ namespace CallOfBeer.App
     {
         private BasicGeoposition topLeft;
         private BasicGeoposition bottomRight;
-        private ObservableCollection<Events> eventListView = new ObservableCollection<Events>();
-        private APITools _apiService = new APITools();
-        private API.API _api = new API.API();
+        private ObservableCollection<EventGet> eventListView = new ObservableCollection<EventGet>();
+        private APIService _apiService;
 
         public MainPage()
         {
             this.InitializeComponent();
+            this._apiService = new APIService();
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         private async void MainPageLoaded(object sender, RoutedEventArgs e)
         {
             // Liste des évènements à retourner
-            List<Events> listEventAvailiable = null;
+            List<EventGet> listEventAvailiable = null;
             List<string> frontData = new List<string>();
 
             // Affichage de la map
@@ -58,7 +59,7 @@ namespace CallOfBeer.App
             {
                 //Task<List<Events>> response = this._apiService.GetEvents(topLeft.Latitude, topLeft.Longitude, bottomRight.Latitude, bottomRight.Longitude);
                 //response.Wait();
-                IEnumerable<Events> machin = await this._api.GetEvents(topLeft.Latitude, topLeft.Longitude, bottomRight.Latitude, bottomRight.Longitude);
+                IEnumerable<EventGet> machin = await this._apiService.GetEventsAsync(topLeft.Latitude, topLeft.Longitude, bottomRight.Latitude, bottomRight.Longitude);
                 listEventAvailiable = machin.ToList();
 
                 if (listEventAvailiable.Count != 0 && listEventAvailiable != null)

@@ -12,6 +12,7 @@ using Windows.UI;
 using Windows.Foundation;
 using Windows.Storage.Streams;
 using CallOfBeer.API;
+using CallOfBeer.API.Models;
 
 namespace CallOfBeer.App.Class
 {
@@ -93,16 +94,16 @@ namespace CallOfBeer.App.Class
         /// </summary>
         /// <param name="mapControler">MapControle de l'application</param>
         /// <param name="events">Evenement à afficher</param>
-        public static void AddMapLocation(MapControl mapControler,  Events events)
+        public static void AddMapLocation(MapControl mapControler,  EventGet myEvent)
         {
             MapIcon mapEventLocation = new MapIcon();
             //mapEventLocation.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/customicon.png"));
             mapEventLocation.NormalizedAnchorPoint = new Point(0.5, 1);
             mapEventLocation.Location = new Geopoint(new BasicGeoposition(){
-                Longitude = events.adress.Geolocalisation[0],
-                Latitude = events.adress.Geolocalisation[1]
+                Longitude = myEvent.Address.Geolocation[1],
+                Latitude = myEvent.Address.Geolocation[0]
             });
-            mapEventLocation.Title = events.name;
+            mapEventLocation.Title = myEvent.Name;
             mapControler.MapElements.Add(mapEventLocation);
         }
     }
