@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,16 +35,22 @@ namespace CallOfBeer.App
         public NewEvent()
         {
             this.InitializeComponent();
+
+            this.event_name.KeyUp += new KeyEventHandler(CloseKeyBoard);
+            this.event_adressname.KeyUp += new KeyEventHandler(CloseKeyBoard);
+            this.event_adress.KeyUp += new KeyEventHandler(CloseKeyBoard);
+            this.event_city.KeyUp += new KeyEventHandler(CloseKeyBoard);
+            this.event_country.KeyUp += new KeyEventHandler(CloseKeyBoard);
+            
         }
 
-        private void Button_Taped(object sender, TappedRoutedEventArgs e)
+        private void IndexReturn(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage));
         }
 
-        private async void Launch_Event(object sender, TappedRoutedEventArgs e)
+        private async void SendEvent(object sender, RoutedEventArgs e)
         {
-
             Geoposition eventPosition = await LocationService.GetUserPosition();
 
             // Vérification des données saisient
@@ -69,7 +77,7 @@ namespace CallOfBeer.App
                 {
                     eventName = event_name.Text.ToString(),
                     eventDate = ((int)toTimeSpan.TotalSeconds).ToString(),
-                    addressLon = localAdressLong.Replace(",","."),
+                    addressLon = localAdressLong.Replace(",", "."),
                     addressLat = localAdressLat.Replace(",", "."),
                     addressAddress = event_adress.Text.ToString(),
                     addressZip = event_zip.Text.ToString(),
@@ -84,6 +92,26 @@ namespace CallOfBeer.App
                 if (response.IsSuccessStatusCode)
                     Frame.Navigate(typeof(MainPage));
             }
+        }
+            
+        private void CloseKeyBoard(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                //Definit l'évènement comme traité
+                e.Handled = true;
+                this.Focus(FocusState.)
+            }
+        }
+
+        private void LoseFocus(object sender)
+        {
+            var control = sender as Control;
+            var isTabStop = control.IsTabStop;
+            control.IsTabStop = false;
+            control.IsEnabled = false;
+            control.IsEnabled = true;
+            //control.IsTabStop = isTabStop;
         }
     }
 }
