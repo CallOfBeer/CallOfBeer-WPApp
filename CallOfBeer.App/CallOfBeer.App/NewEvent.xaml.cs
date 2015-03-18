@@ -1,25 +1,12 @@
 ﻿using CallOfBeer.API;
 using CallOfBeer.App.Class;
 using System;
-using System.Collections.Generic;
-using System.Device.Location;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.System;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d’élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -36,11 +23,11 @@ namespace CallOfBeer.App
         {
             this.InitializeComponent();
 
-            this.event_name.KeyUp += new KeyEventHandler(CloseKeyBoard);
-            this.event_adressname.KeyUp += new KeyEventHandler(CloseKeyBoard);
-            this.event_adress.KeyUp += new KeyEventHandler(CloseKeyBoard);
-            this.event_city.KeyUp += new KeyEventHandler(CloseKeyBoard);
-            this.event_country.KeyUp += new KeyEventHandler(CloseKeyBoard);
+            //this.event_name.KeyUp += new KeyEventHandler(CloseKeyBoard);
+            //this.event_adressname.KeyUp += new KeyEventHandler(CloseKeyBoard);
+            //this.event_adress.KeyUp += new KeyEventHandler(CloseKeyBoard);
+            //this.event_city.KeyUp += new KeyEventHandler(CloseKeyBoard);
+            //this.event_country.KeyUp += new KeyEventHandler(CloseKeyBoard);
             
         }
 
@@ -99,8 +86,9 @@ namespace CallOfBeer.App
             if (e.Key == VirtualKey.Enter)
             {
                 //Definit l'évènement comme traité
-                e.Handled = true;
-                this.Focus(FocusState.)
+                var control = sender as Control;
+                LoseFocus(sender);
+                
             }
         }
 
@@ -111,7 +99,7 @@ namespace CallOfBeer.App
             control.IsTabStop = false;
             control.IsEnabled = false;
             control.IsEnabled = true;
-            //control.IsTabStop = isTabStop;
+            control.IsTabStop = isTabStop;
         }
     }
 }

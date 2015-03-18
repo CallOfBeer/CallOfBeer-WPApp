@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Icon="Back" Label="Retour" Click="IndexReturn"/>
@@ -30,19 +30,37 @@
 
         <!-- Corp de la page -->
         <Grid Grid.Row="1">
-            <!-- Title --> 
-            <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="10,30,0,0" TextWrapping="Wrap" PlaceholderText="Nom de l'évènement" VerticalAlignment="Top" Width="380" x:Name="event_name" />
-            
-            <!-- Element Date -->
-            <DatePicker HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="160" x:Name="event_date" HorizontalContentAlignment="Center"/>
-            <TimePicker HorizontalAlignment="Left" Margin="230,92,0,0" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" x:Name="event_time"/>
-            
-            <!-- Adresse -->
-            <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="10,168,0,0" TextWrapping="Wrap" PlaceholderText="Nom de l'adresse" VerticalAlignment="Top" Width="380" x:Name="event_adressname"/>
-            <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" PlaceholderText="Adresse" VerticalAlignment="Top" Width="380" x:Name="event_adress"/>
-            <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="10,296,0,0" TextWrapping="Wrap" PlaceholderText="Code Postale" VerticalAlignment="Top" Width="380" x:Name="event_zip" InputScope="Number"/>
-            <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="10,364,0,0" TextWrapping="Wrap" PlaceholderText="Ville" VerticalAlignment="Top" Width="380" x:Name="event_city"/>
-            <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="10,424,0,0" TextWrapping="Wrap" PlaceholderText="Pays" VerticalAlignment="Top" Width="380" x:Name="event_country"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="4*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <!-- Title -->
+                <TextBlock HorizontalAlignment="Left" Margin="10,2,0,54" TextWrapping="Wrap" Text="Evénement" Width="160" TextAlignment="Left" FontSize="19"/>
+                <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" PlaceholderText="Nom de l'évènement" VerticalAlignment="Top" Width="380" x:Name="event_name" TabIndex="1" />
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <!-- Element Date -->
+                <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" x:Name="event_date" HorizontalContentAlignment="Center" Margin="10,30,0,0"/>
+                <TimePicker HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" HorizontalContentAlignment="Center" x:Name="event_time" Margin="230,30,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,10,0,54" TextWrapping="Wrap" Text="Date" Height="24" Width="160" TextAlignment="Left" FontSize="19"/>
+                <TextBlock HorizontalAlignment="Left" Margin="230,11,0,53" TextWrapping="Wrap" Text="Heure" Height="24" Width="160" TextAlignment="Left" FontSize="19"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="0,10,0,-10.444">
+                <!-- Adresse -->
+                <TextBlock HorizontalAlignment="Left" Margin="10,10,0,317" TextWrapping="Wrap" Height="24" Width="160" TextAlignment="Left" FontSize="19" Text="Adresse"/>
+
+                <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="20,49,0,0" TextWrapping="Wrap" PlaceholderText="Nom de l'adresse" VerticalAlignment="Top" Width="350" x:Name="event_adressname" TabIndex="2"/>
+                <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="20,106,0,0" TextWrapping="Wrap" PlaceholderText="Adresse" VerticalAlignment="Top" Width="350" x:Name="event_adress" TabIndex="3"/>
+                <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="20,222,0,0" TextWrapping="Wrap" PlaceholderText="Ville" VerticalAlignment="Top" Width="350" x:Name="event_city" TabIndex="5"/>
+                <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="20,280,0,0" TextWrapping="Wrap" PlaceholderText="Code Postale" VerticalAlignment="Top" Width="350" x:Name="event_zip" InputScope="Number" TabIndex="6"/>
+                <TextBox KeyUp="CloseKeyBoard" HorizontalAlignment="Left" Margin="20,164,0,0" TextWrapping="Wrap" PlaceholderText="Pays" VerticalAlignment="Top" Width="350" x:Name="event_country" TabIndex="4"/>
+            </Grid>
+
         </Grid>
     </Grid>
 </Page>
