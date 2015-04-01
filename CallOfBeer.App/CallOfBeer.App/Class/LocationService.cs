@@ -26,7 +26,7 @@ namespace CallOfBeer.App.Class
         /// Initialise la map
         /// </summary>
         /// <param name="appMap">nom de la map dans la vue</param>
-        public static async void LoadMap(MapControl appMap)
+        public static async void MapLoader(MapControl appMap)
         {
             Geoposition returnedPosition = await GetUserPosition();
             MapIcon userMapIcon = new MapIcon();
