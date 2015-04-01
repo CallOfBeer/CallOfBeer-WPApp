@@ -24,6 +24,10 @@ namespace CallOfBeer.API
             string body = JsonConvert.SerializeObject(eventPost);
 
             HttpResponseMessage responseMessage = await this._httpProvider.PostAsync(newUrl, body);
+            
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception("Un problème est survenu lors de l'envoie de la requête.");
+
             string response = await responseMessage.Content.ReadAsStringAsync();
 
             return response;
@@ -37,6 +41,10 @@ namespace CallOfBeer.API
             string body = JsonConvert.SerializeObject(newEvent);
 
             HttpResponseMessage responseMessage = await this._httpProvider.PostAsync(newUrl, body);
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception("Un problème est survenu lors de l'envoie de la requête.");
+
             string response = await responseMessage.Content.ReadAsStringAsync();
 
             return response;
@@ -51,8 +59,12 @@ namespace CallOfBeer.API
             { "botLat", botLat.ToString().Replace(',','.') },
             { "botLon", botLon.ToString().Replace(',','.') }
             };
-            HttpResponseMessage result = await this._httpProvider.GetAsync(newUrl, parameters);
-            string response = await result.Content.ReadAsStringAsync();
+            HttpResponseMessage responseMessage = await this._httpProvider.GetAsync(newUrl, parameters);
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception("Un problème est survenu lors de l'envoie de la requête.");
+
+            string response = await responseMessage.Content.ReadAsStringAsync();
 
             return response;
         }
@@ -64,8 +76,12 @@ namespace CallOfBeer.API
             { "lat", latitude.ToString().Replace(',','.') },
             { "lon", longitude.ToString().Replace(',','.') }
             };
-            HttpResponseMessage result = await this._httpProvider.GetAsync(newUrl, parameters);
-            string response = await result.Content.ReadAsStringAsync();
+            HttpResponseMessage responseMessage = await this._httpProvider.GetAsync(newUrl, parameters);
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception("Un problème est survenu lors de l'envoie de la requête.");
+
+            string response = await responseMessage.Content.ReadAsStringAsync();
 
             return response;
         }
@@ -76,8 +92,12 @@ namespace CallOfBeer.API
             Dictionary<string, string> parameters = new Dictionary<string, string>() {
             { "id", eventId.ToString() }
             };
-            HttpResponseMessage result = await this._httpProvider.GetAsync(newUrl, parameters);
-            string response = await result.Content.ReadAsStringAsync();
+            HttpResponseMessage responseMessage = await this._httpProvider.GetAsync(newUrl, parameters);
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception("Un problème est survenu lors de l'envoie de la requête.");
+
+            string response = await responseMessage.Content.ReadAsStringAsync();
 
             return response;
         }
@@ -88,8 +108,12 @@ namespace CallOfBeer.API
             Dictionary<string, string> parameters = new Dictionary<string, string>() {
             { "address", address }
             };
-            HttpResponseMessage result = await this._httpProvider.GetAsync(newUrl, parameters);
-            string response = await result.Content.ReadAsStringAsync();
+            HttpResponseMessage responseMessage = await this._httpProvider.GetAsync(newUrl, parameters);
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception("Un problème est survenu lors de l'envoie de la requête.");
+
+            string response = await responseMessage.Content.ReadAsStringAsync();
 
             return response;
         }
