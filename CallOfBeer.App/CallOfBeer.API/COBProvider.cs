@@ -23,9 +23,8 @@ namespace CallOfBeer.API
             string newUrl = string.Concat(baseUrl, "events");
             string body = JsonConvert.SerializeObject(eventPost);
 
-            Task<HttpResponseMessage> responseMessage = this._httpProvider.PostAsync(newUrl, body);
-            responseMessage.Wait();
-            string response = await responseMessage.Result.Content.ReadAsStringAsync();
+            HttpResponseMessage responseMessage = await this._httpProvider.PostAsync(newUrl, body);
+            string response = await responseMessage.Content.ReadAsStringAsync();
 
             return response;
         }
@@ -37,9 +36,8 @@ namespace CallOfBeer.API
 
             string body = JsonConvert.SerializeObject(newEvent);
 
-            Task<HttpResponseMessage> responseMessage = this._httpProvider.PostAsync(newUrl, body);
-            responseMessage.Wait();
-            string response = await responseMessage.Result.Content.ReadAsStringAsync();
+            HttpResponseMessage responseMessage = await this._httpProvider.PostAsync(newUrl, body);
+            string response = await responseMessage.Content.ReadAsStringAsync();
 
             return response;
         }
