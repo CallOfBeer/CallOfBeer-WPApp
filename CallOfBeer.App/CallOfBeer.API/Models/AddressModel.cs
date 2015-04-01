@@ -12,6 +12,7 @@ namespace CallOfBeer.API.Models
         [JsonProperty("id")]
         public int Id { get; set; }
 
+        // Latitude/Longitude
         [JsonProperty("geolocation")]
         public double[] Geolocation { get; set; }
 
