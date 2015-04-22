@@ -19,6 +19,9 @@ namespace CallOfBeer.API.Models
         public DateTime Date { get; set; }
 
         [JsonProperty("address")]
-        public AddressModel Address { get; set; }
+        public AddressEvent Address { get; set; }
+
+        [JsonProperty("private")]
+        public bool IsPrivate { get; set; }
     }
 }
