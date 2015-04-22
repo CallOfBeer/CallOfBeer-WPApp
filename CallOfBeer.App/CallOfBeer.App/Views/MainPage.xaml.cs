@@ -94,7 +94,6 @@ namespace CallOfBeer.App
             Frame.Navigate(typeof(NewEvent));
         }
 
-
         /// <summary>
         /// Vérification de la connexion internet du téléphone
         /// </summary>
