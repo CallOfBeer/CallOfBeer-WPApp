@@ -42,6 +42,8 @@ namespace CallOfBeer.App.Class
             userMapIcon.NormalizedAnchorPoint = new Point(0.5, 1);
             userMapIcon.Location = returnedPosition.Coordinate.Point;
             userMapIcon.Title = "Votre position";
+            userMapIcon.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/User.png"));
+            userMapIcon.ZIndex = 98;
             appMap.MapElements.Add(userMapIcon);
         }
 
@@ -104,6 +106,7 @@ namespace CallOfBeer.App.Class
                 Latitude = myEvent.Address.Latitude
             });
             mapEventLocation.Title = myEvent.Name;
+            mapEventLocation.ZIndex = 100;
             mapControler.MapElements.Add(mapEventLocation);
         }
     }
