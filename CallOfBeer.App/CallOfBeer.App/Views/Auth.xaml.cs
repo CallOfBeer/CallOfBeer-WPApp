@@ -1,4 +1,5 @@
-﻿using CallOfBeer.App;
+﻿using CallOfBeer.API;
+using CallOfBeer.App;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,9 +19,12 @@ namespace CallOfBeer.Views
 {
     public sealed partial class Auth : Page
     {
+        private readonly APIService _apiService;
+
         public Auth()
         {
             this.InitializeComponent();
+            this._apiService = new APIService();
         }
 
         private void MainPageLoaded(object sender, RoutedEventArgs e)
@@ -31,6 +35,13 @@ namespace CallOfBeer.Views
         private void NewAccount(object sender, TappedRoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage));
+        }
+
+        private void Authentifiate(object sender, RoutedEventArgs e)
+        {
+            //TODO Envoyer la requete à l'api
+
+
         }
     }
 }

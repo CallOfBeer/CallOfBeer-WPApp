@@ -29,16 +29,16 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <TextBlock x:Name="SubTitle" Text="Authentification" FontSize="20" TextAlignment="Left" Margin="10,30,0,0"/>
+                <TextBlock x:Name="SubTitle" Text="Authentification" FontSize="20" TextAlignment="Center" Margin="10,30,0,0"/>
             </Grid>
 
             <Grid Grid.Row="1">
                 <TextBox    HorizontalAlignment="Left" Margin="33,100,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="332" PlaceholderText="Login"/>
                 <TextBox    HorizontalAlignment="Left" Margin="33,160,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-0.219,0.335" Width="332" PlaceholderText="Password"/>
-                <Button     HorizontalAlignment="Left" Margin="33,220,0,0" Content="C'est partis"   VerticalAlignment="top" Width="332"/>
+                <Button     HorizontalAlignment="Left" Margin="33,220,0,0" Content="C'est partis"   VerticalAlignment="top" Width="332" Click="Authentifiate"/>
 
                 <TextBlock  HorizontalAlignment="Left" Margin="33,295,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-0.332,-3.068" Height="16" Width="155" FontSize="15" Foreground="#FF1D75B2" x:Name="Forgot"><Underline><Run Text="Mot de passe oublié ?"/></Underline></TextBlock>
-                <TextBlock  HorizontalAlignment="Left" Margin="242,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.332,-3.068" Height="16" Width="123" FontSize="15" Foreground="#FF1D75B2" Tapped="NewAccount" x:Name="NewAccount"><Underline><Run Text="Creer un compte"/></Underline></TextBlock>
+                <TextBlock  HorizontalAlignment="Left" Margin="242,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.332,-3.068" Height="16" Width="123" FontSize="15" Foreground="#FF1D75B2" Tapped="NewAccount" x:Name="newAccount"><Underline><Run Text="Creer un compte"/></Underline></TextBlock>
             </Grid>
         </Grid>
 
