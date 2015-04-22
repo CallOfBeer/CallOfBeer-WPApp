@@ -14,7 +14,7 @@ namespace CallOfBeer.API.Models
 
         // Latitude/Longitude
         [JsonProperty("geolocation")]
-        public double[] Geolocation { get; set; }
+        public GeolocationModel Geolocation { get; set; }
 
         [JsonProperty("address")]
         public string Address { get; set; }
@@ -27,5 +27,14 @@ namespace CallOfBeer.API.Models
 
         [JsonProperty("country")]
         public string Country { get; set; }
+    }
+
+    public class GeolocationModel
+    {
+        [JsonProperty("lat")]
+        public double Latitude { get; set; }
+
+        [JsonProperty("lon")]
+        public double Longitude { get; set; }
     }
 }
