@@ -41,7 +41,9 @@
     <Compile Include="Models\EventGet.cs" />
     <Compile Include="Models\EventPost.cs" />
     <Compile Include="Models\EventUpdate.cs" />
-    <Compile Include="Models\RawAddressModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\Token.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

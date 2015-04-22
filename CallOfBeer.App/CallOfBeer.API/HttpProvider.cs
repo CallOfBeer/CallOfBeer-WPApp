@@ -10,7 +10,7 @@ namespace CallOfBeer.API
 {
     internal class HttpProvider
     {
-        public async Task<HttpResponseMessage> GetAsync(string url, Dictionary<string, string> parameters = null)
+        public async Task<HttpResponseMessage> GetAsync(string url, Dictionary<string, string> headers, Dictionary<string, string> parameters = null)
         {
             HttpResponseMessage result = null;
 
@@ -26,6 +26,9 @@ namespace CallOfBeer.API
 
                     request.RequestUri = new Uri(newUrl);
 
+                    // Ajout des headers
+                    this.AddHeaders(request, headers);
+
                     result = await httpClient.SendAsync(request);
                 }
                 catch (Exception ex)
@@ -36,7 +39,7 @@ namespace CallOfBeer.API
             return result;
         }
 
-        public async Task<HttpResponseMessage> PostAsync(string url, string body)
+        public async Task<HttpResponseMessage> PostAsync(string url, Dictionary<string, string> headers, string body)
         {
             HttpResponseMessage result = null;
             using (HttpClient httpClient = new HttpClient(new HttpClientHandler()))
@@ -47,9 +50,15 @@ namespace CallOfBeer.API
 
                     request.Method = HttpMethod.Post;
 
-                    request.Content = new StringContent(body, Encoding.UTF8, "application/json");
+                    if (body != null)
+                    {
+                        request.Content = new StringContent(body, Encoding.UTF8, "application/json");
+                    }
 
                     request.RequestUri = new Uri(url);
+
+                    // Ajout des headers
+                    this.AddHeaders(request, headers);
 
                     result = await httpClient.SendAsync(request);
                 }
@@ -61,7 +70,7 @@ namespace CallOfBeer.API
             return result;
         }
 
-        public string BuildParameters(Dictionary<string, string> parameters)
+        private string BuildParameters(Dictionary<string, string> parameters)
         {
             string result = string.Empty;
             if (parameters != null)
@@ -85,6 +94,24 @@ namespace CallOfBeer.API
                 result = sb.ToString();
             }
             return result;
+        }
+
+        private void AddHeaders(HttpRequestMessage request, Dictionary<string, string> headers)
+        {
+            if (headers != null)
+            {
+                try
+                {
+                    foreach (var item in headers)
+                    {
+                        request.Headers.Add(item.Key, item.Value);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Une erreur est survenue lors de la création des headers.", ex);
+                }
+            }
         }
     }
 }

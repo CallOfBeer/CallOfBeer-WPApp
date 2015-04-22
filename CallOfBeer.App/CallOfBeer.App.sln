@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallOfBeer.API", "CallOfBeer.API\CallOfBeer.API.csproj", "{C7CE746B-D793-41E8-8C65-BE5C4BD6F260}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallOfBeer.App", "CallOfBeer.App\CallOfBeer.App.csproj", "{E8375298-B3BD-42DD-8179-0661BEA08434}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication", "ConsoleApplication\ConsoleApplication.csproj", "{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,16 @@ Global
 		{E8375298-B3BD-42DD-8179-0661BEA08434}.Release|x86.ActiveCfg = Release|x86
 		{E8375298-B3BD-42DD-8179-0661BEA08434}.Release|x86.Build.0 = Release|x86
 		{E8375298-B3BD-42DD-8179-0661BEA08434}.Release|x86.Deploy.0 = Release|x86
+		{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}.Release|ARM.ActiveCfg = Release|Any CPU
+		{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}.Release|x64.ActiveCfg = Release|Any CPU
+		{082961C2-9F9F-4F90-A103-8FEBA02B7CB2}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

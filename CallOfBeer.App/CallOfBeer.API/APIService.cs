@@ -11,11 +11,44 @@ namespace CallOfBeer.API
     public class APIService
     {
         private COBProvider _cob;
+
         public APIService()
         {
             this._cob = new COBProvider();
         }
 
+        public void Connect(string accessToken)
+        {
+            try
+            {
+                this._cob.UseAccessToken(accessToken);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void Disconnect()
+        {
+            try
+            {
+                this._cob.RemoveAccessToken();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Permet de récupérer les évenements d'une zone
+        /// </summary>
+        /// <param name="topLat"></param>
+        /// <param name="topLon"></param>
+        /// <param name="botLat"></param>
+        /// <param name="botLon"></param>
+        /// <returns>Liste d'évenements</returns>
         public async Task<IEnumerable<EventGet>> GetEventsAsync(double topLat, double topLon, double botLat, double botLon)
         {
             IEnumerable<EventGet> result = null;
@@ -28,42 +61,64 @@ namespace CallOfBeer.API
             return result;
         }
 
-        public async Task<bool> PostEventAsync(EventPost eventPost)
+        /// <summary>
+        /// Permet de poster un nouvel évenement
+        /// </summary>
+        /// <param name="eventPost"></param>
+        /// <returns>Evenement créé</returns>
+        public async Task<EventGet> PostEventAsync(EventPost eventPost)
         {
-            bool result = false;
+            EventGet result = null;
             result = await this.SafeRequest(async () =>
             {
                 string response = await this._cob.PostEventAsync(eventPost);
-                result = JsonConvert.DeserializeObject<bool>(response);
+                result = JsonConvert.DeserializeObject<EventGet>(response);
                 return result;
             });
             return result;
         }
 
-        public async Task<bool> UpdateEventAsync(EventPost eventPost, int eventId)
+        /// <summary>
+        /// Permet de mettre à jour un évenement
+        /// </summary>
+        /// <param name="eventPost"></param>
+        /// <param name="eventId"></param>
+        /// <returns>Evenement mis a jour</returns>
+        public async Task<EventGet> UpdateEventAsync(EventPost eventPost, int eventId)
         {
-            bool result = false;
+            EventGet result = null;
             result = await this.SafeRequest(async () =>
             {
                 string response = await this._cob.UpdateEventAsync(eventPost, eventId);
-                result = JsonConvert.DeserializeObject<bool>(response);
+                result = JsonConvert.DeserializeObject<EventGet>(response);
                 return result;
             });
             return result;
         }
 
-        public async Task<AddressModel> GetAddressAsync(double latitude, double longitude)
+        /// <summary>
+        /// Permet de récupérer une adresse en fonction de ses coordonnées
+        /// </summary>
+        /// <param name="latitude"></param>
+        /// <param name="longitude"></param>
+        /// <returns>Adresse</returns>
+        public async Task<AddressByGeoloc> GetAddressAsync(double latitude, double longitude)
         {
-            AddressModel result = null;
+            AddressByGeoloc result = null;
             result = await this.SafeRequest(async () =>
             {
                 string response = await this._cob.GetAddressAsync(latitude, longitude);
-                result = JsonConvert.DeserializeObject<AddressModel>(response);
+                result = JsonConvert.DeserializeObject<AddressByGeoloc>(response);
                 return result;
             });
             return result;
         }
 
+        /// <summary>
+        /// Permet de récupérer un évenement en fonction de son id
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns>Evenement</returns>
         public async Task<EventGet> GetEventByIdAsync(int eventId)
         {
             EventGet result = null;
@@ -76,14 +131,88 @@ namespace CallOfBeer.API
             return result;
         }
 
-        public async Task<AddressModel> GetGeolocAsync(string address)
+        /// <summary>
+        /// Permet de récupérer les coordonnées d'une adresse
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns>Adresse avec les coordonnées</returns>
+        public async Task<GeolocByAddress> GetGeolocAsync(string address)
         {
-            AddressModel result = null;
+            GeolocByAddress result = null;
             result = await this.SafeRequest(async () =>
             {
                 string response = await this._cob.GetGeolocAsync(address);
-                RawAddressModel rawAddress = JsonConvert.DeserializeObject<RawAddressModel>(response);
-                result = rawAddress.ConvertToAddressModel();
+                result = JsonConvert.DeserializeObject<GeolocByAddress>(response);
+                return result;
+            });
+            return result;
+        }
+
+        /// <summary>
+        /// Enregistrement d'un nouvel utilisateur
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="pass"></param>
+        /// <param name="mail"></param>
+        /// <returns>Utilisateur</returns>
+        public async Task<User> RegisterAsync(string userName, string pass, string mail)
+        {
+            User result = null;
+            result = await this.SafeRequest(async () =>
+            {
+                string response = await this._cob.RegisterAsync(userName, pass, mail);
+                result = JsonConvert.DeserializeObject<User>(response);
+                return result;
+            });
+            return result;
+        }
+
+        /// <summary>
+        /// Obtenir un token pour l'utilisateur
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="pass"></param>
+        /// <returns>Token</returns>
+        public async Task<Token> GetTokenAsync(string userName, string pass)
+        {
+            Token result = null;
+            result = await this.SafeRequest(async () =>
+            {
+                string response = await this._cob.GetTokenAsync(userName, pass);
+                result = JsonConvert.DeserializeObject<Token>(response);
+                return result;
+            });
+            return result;
+        }
+
+        /// <summary>
+        /// Rafraichi un token (utiliser le ResfreshToken pour obtenir un nouveau AccessToken)
+        /// </summary>
+        /// <param name="refreshToken"></param>
+        /// <returns>Token</returns>
+        public async Task<Token> RefreshTokenAsync(string refreshToken)
+        {
+            Token result = null;
+            result = await this.SafeRequest(async () =>
+            {
+                string response = await this._cob.RefreshTokenAsync(refreshToken);
+                result = JsonConvert.DeserializeObject<Token>(response);
+                return result;
+            });
+            return result;
+        }
+
+        /// <summary>
+        /// Permet d'obtenir l'utilisateur actuellement connecté
+        /// </summary>
+        /// <returns></returns>
+        public async Task<User> GetUserAsync()
+        {
+            User result = null;
+            result = await this.SafeRequest(async () =>
+            {
+                string response = await this._cob.GetUserAsync();
+                result = JsonConvert.DeserializeObject<User>(response);
                 return result;
             });
             return result;

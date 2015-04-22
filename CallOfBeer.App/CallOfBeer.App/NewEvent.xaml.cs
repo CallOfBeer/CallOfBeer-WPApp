@@ -77,9 +77,9 @@ namespace CallOfBeer.App
                 };
 
                 //Envois à l'api
-                bool response = await this._apiService.PostEventAsync(eventToSend);
+                //bool response = await this._apiService.PostEventAsync(eventToSend);
 
-                if (response)
+                //if (response)
                     Frame.Navigate(typeof(MainPage));
             }
         }
