@@ -62,18 +62,17 @@ namespace CallOfBeer.App
                 double localAdressLong = eventPosition.Coordinate.Longitude;
                 double localAdressLat = eventPosition.Coordinate.Latitude;
 
-
                 //Création de l'objet à envoyer
                 EventPost eventToSend = new EventPost()
                 {
-                    EventName = event_name.Text,
-                    EventDate = timeSpan,
-                    AddressLon = localAdressLong,
-                    AddressLat = localAdressLat,
-                    AddressAddress = event_adress.Text,
-                    AddressZip = Convert.ToInt32(event_zip.Text),
-                    AddressCity = event_city.Text,
-                    AddressCountry = event_country.Text,
+                    Name = event_name.Text,
+                    Date = timeSpan,
+                    Longitude = localAdressLong,
+                    Latitude = localAdressLat,
+                    Address = event_adress.Text,
+                    Zip = Convert.ToInt32(event_zip.Text),
+                    City = event_city.Text,
+                    Country = event_country.Text,
                     AddressName = event_adressname.Text
                 };
 

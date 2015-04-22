@@ -34,7 +34,10 @@ namespace CallOfBeer.API.Models
         {
             AddressModel result = new AddressModel()
             {
-                Geolocation = new double[] { this.Latitude, this.Longitude },
+                Geolocation = new GeolocationModel() {
+                    Latitude = this.Latitude,
+                    Longitude = this.Longitude 
+                },
                 Address = String.Format("{0} {1}", this.StreetNumber, this.StreetName),
                 City = this.City,
                 Country = this.Country,

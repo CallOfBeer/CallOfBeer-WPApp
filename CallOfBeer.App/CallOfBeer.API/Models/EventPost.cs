@@ -10,30 +10,30 @@ namespace CallOfBeer.API.Models
     public class EventPost
     {
         [JsonProperty("eventName")]
-        public string EventName { get; set; }
+        public string Name { get; set; }
 
         [JsonProperty("eventDate")]
-        public int EventDate { get; set; }
+        public int Date { get; set; }
 
         [JsonProperty("addressName")]
         public string AddressName { get; set; }
 
         [JsonProperty("addressAddress")]
-        public string AddressAddress { get; set; }
+        public string Address { get; set; }
 
         [JsonProperty("addressZip")]
-        public int AddressZip { get; set; }
+        public int Zip { get; set; }
 
         [JsonProperty("addressCity")]
-        public string AddressCity { get; set; }
+        public string City { get; set; }
 
         [JsonProperty("addressCountry")]
-        public string AddressCountry { get; set; }
+        public string Country { get; set; }
 
         [JsonProperty("addressLat")]
-        public double AddressLat { get; set; }
+        public double Latitude { get; set; }
 
         [JsonProperty("addressLon")]
-        public double AddressLon { get; set; }
+        public double Longitude { get; set; }
     }
 }

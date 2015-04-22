@@ -10,19 +10,19 @@ namespace CallOfBeer.API.Models
     class EventUpdate : EventPost
     {
         [JsonProperty("eventId")]
-        public int EventId { get; set; }
+        public int Id { get; set; }
 
         public EventUpdate(EventPost eventPost)
         {
-            this.AddressAddress = eventPost.AddressAddress;
-            this.AddressCity = eventPost.AddressCity;
-            this.AddressCountry = eventPost.AddressCountry;
-            this.AddressLat = eventPost.AddressLat;
-            this.AddressLon = eventPost.AddressLon;
+            this.Address = eventPost.Address;
+            this.City = eventPost.City;
+            this.Country = eventPost.Country;
+            this.Latitude = eventPost.Latitude;
+            this.Longitude = eventPost.Longitude;
             this.AddressName = eventPost.AddressName;
-            this.AddressZip = eventPost.AddressZip;
-            this.EventDate = eventPost.EventDate;
-            this.EventName = eventPost.EventName;
+            this.Zip = eventPost.Zip;
+            this.Date = eventPost.Date;
+            this.Name = eventPost.Name;
         }
     }
 }

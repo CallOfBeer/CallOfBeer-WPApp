@@ -36,7 +36,7 @@ namespace CallOfBeer.API
         public async Task<string> UpdateEventAsync(EventPost eventPost, int eventId)
         {
             string newUrl = string.Concat(baseUrl, "events");
-            EventUpdate newEvent = new EventUpdate(eventPost) { EventId = eventId };
+            EventUpdate newEvent = new EventUpdate(eventPost) { Id = eventId };
 
             string body = JsonConvert.SerializeObject(newEvent);
 

@@ -101,10 +101,9 @@ namespace CallOfBeer.App.Class
             MapIcon mapEventLocation = new MapIcon();
             //mapEventLocation.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/customicon.png"));
             mapEventLocation.NormalizedAnchorPoint = new Point(0.5, 1);
-            // TODO modifier l'ordre Long Lat
             mapEventLocation.Location = new Geopoint(new BasicGeoposition(){
-                Longitude = myEvent.Address.Geolocation[0],
-                Latitude = myEvent.Address.Geolocation[1]
+                Longitude = myEvent.Address.Geolocation.Longitude,
+                Latitude = myEvent.Address.Geolocation.Latitude
             });
             mapEventLocation.Title = myEvent.Name;
             mapEventLocation.ZIndex = 100;
