@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d’élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkID=390556
 
-namespace CallOfBeer.Views
+namespace CallOfBeer.App
 {
     public sealed partial class Account : Page
     {

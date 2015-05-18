@@ -100,6 +100,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\NewAccount.xaml.cs">
+      <DependentUpon>NewAccount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NewEvent.xaml.cs">
       <DependentUpon>NewEvent.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

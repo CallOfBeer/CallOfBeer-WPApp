@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using CallOfBeer.API.Models;
 using Windows.Networking.Connectivity;
 using Windows.UI.Popups;
+using Windows.Storage;
 
 
 // Pour en savoir plus sur le modèle d'élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkId=391641
@@ -34,10 +35,18 @@ namespace CallOfBeer.App
             this.InitializeComponent();
             this._apiService = new APIService();
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+
+        
         }
 
         private async void MainPageLoaded(object sender, RoutedEventArgs e)
         {
+            var localSettings = ApplicationData.Current.LocalSettings;
+            Object value = localSettings.Values["AccessToken"];
+            if (value == null)
+                Frame.Navigate(typeof(Auth));
+
             this.IsNetworkConnected = NetworkConnect();
 
             if (this.IsNetworkConnected)

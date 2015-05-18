@@ -1,8 +1,7 @@
 ﻿<Page
-    x:Class="CallOfBeer.Views.Auth"
+    x:Class="CallOfBeer.App.Auth"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:CallOfBeer.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -33,8 +32,8 @@
             </Grid>
 
             <Grid Grid.Row="1">
-                <TextBox    HorizontalAlignment="Left" Margin="33,100,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="332" PlaceholderText="Login"/>
-                <TextBox    HorizontalAlignment="Left" Margin="33,160,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-0.219,0.335" Width="332" PlaceholderText="Password"/>
+                <TextBox    HorizontalAlignment="Left" Margin="33,100,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="332" PlaceholderText="Login" x:Name="Login"/>
+                <TextBox    HorizontalAlignment="Left" Margin="33,160,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-0.219,0.335" Width="332" PlaceholderText="Password" x:Name="Password"/>
                 <Button     HorizontalAlignment="Left" Margin="33,220,0,0" Content="C'est partis"   VerticalAlignment="top" Width="332" Click="Authentifiate"/>
 
                 <TextBlock  HorizontalAlignment="Left" Margin="33,295,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-0.332,-3.068" Height="16" Width="155" FontSize="15" Foreground="#FF1D75B2" x:Name="Forgot"><Underline><Run Text="Mot de passe oublié ?"/></Underline></TextBlock>
