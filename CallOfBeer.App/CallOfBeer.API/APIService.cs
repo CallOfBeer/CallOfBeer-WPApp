@@ -17,6 +17,10 @@ namespace CallOfBeer.API
             this._cob = new COBProvider();
         }
 
+        /// <summary>
+        /// Permet de renseigner un access token pour réaliser les requêtes
+        /// </summary>
+        /// <param name="accessToken"></param>
         public void Connect(string accessToken)
         {
             try
@@ -29,6 +33,9 @@ namespace CallOfBeer.API
             }
         }
 
+        /// <summary>
+        /// Retire l'access token pour les requêtes
+        /// </summary>
         public void Disconnect()
         {
             try
