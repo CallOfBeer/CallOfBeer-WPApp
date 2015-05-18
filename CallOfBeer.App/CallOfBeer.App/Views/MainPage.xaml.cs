@@ -35,9 +35,6 @@ namespace CallOfBeer.App
             this.InitializeComponent();
             this._apiService = new APIService();
             this.NavigationCacheMode = NavigationCacheMode.Required;
-
-
-        
         }
 
         private async void MainPageLoaded(object sender, RoutedEventArgs e)

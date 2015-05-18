@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CallOfBeer.API;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,24 +15,23 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// Pour en savoir plus sur le modèle d’élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkID=390556
+using CallOfBeer.API.Models;
+using Windows.UI.Popups;
+using CallOfBeer.App;
 
 namespace CallOfBeer.Views
 {
-    /// <summary>
-    /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
-    /// </summary>
     public sealed partial class NewAccount : Page
     {
+        private APIService _apiService; 
+
         public NewAccount()
         {
             this.InitializeComponent();
+            this._apiService = new APIService();
         }
 
-
-
-        private void Creat_Account(object sender, RoutedEventArgs e)
+        private async void Creat_Account(object sender, RoutedEventArgs e)
         {
             if (User.Text != "" && Email.Text != "" && ConfirmPassword.Text != "" && Password.Text != "")
             {
@@ -42,8 +42,15 @@ namespace CallOfBeer.Views
                     {
                         if (ConfirmPassword.Text == Password.Text)
                         {
-                            //TODO appeler le service à l'api
-                            //TODO rediriger l'utilisateur
+                            // Appeler le service à l'api
+                            User newUser = await _apiService.RegisterAsync(User.Text, Password.Text, Email.Text.ToLower());
+                            if (newUser == null)
+                            {
+                                var messageBox = new MessageDialog("Erreur lors de l'envois du nouvelle utilisateur. Veuillez ressayer plus tard.");
+                                messageBox.Commands.Add(new UICommand("Ok"));
+                                await messageBox.ShowAsync();
+                            }
+                            Frame.Navigate(typeof(Auth));
                         }
                         else
                         {
