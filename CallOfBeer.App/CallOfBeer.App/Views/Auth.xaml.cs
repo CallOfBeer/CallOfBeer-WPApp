@@ -46,13 +46,12 @@ namespace CallOfBeer.App
             {
                 Token tok = await this._apiService.GetTokenAsync(Login.Text, Password.Text);
                 var setting = ApplicationData.Current.LocalSettings;
-
                 setting.Values["AccessToken"] = tok.AccessToken;
                 setting.Values["RefreshToken"] = tok.RefreshToken;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                Frame.Navigate(typeof(Auth));
             }
 
             Frame.Navigate(typeof(MainPage));

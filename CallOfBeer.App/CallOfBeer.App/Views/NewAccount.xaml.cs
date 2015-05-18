@@ -33,17 +33,17 @@ namespace CallOfBeer.Views
 
         private async void Creat_Account(object sender, RoutedEventArgs e)
         {
-            if (User.Text != "" && Email.Text != "" && ConfirmPassword.Text != "" && Password.Text != "")
+            if (User.Text != "" && Email.Text != "" && ConfirmPassword.Password != "" && Password.Password != "")
             {
                 if (Conditions.IsChecked.HasValue && Conditions.IsChecked.Value == true)
                 {
                    bool checkEmail = Regex.IsMatch(Email.Text.ToLower(),@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}.[a-z]{2,4}$");
                     if (checkEmail)
                     {
-                        if (ConfirmPassword.Text == Password.Text)
+                        if (ConfirmPassword.Password == Password.Password)
                         {
                             // Appeler le service à l'api
-                            User newUser = await _apiService.RegisterAsync(User.Text, Password.Text, Email.Text.ToLower());
+                            User newUser = await _apiService.RegisterAsync(User.Text, Password.Password, Email.Text.ToLower());
                             if (newUser == null)
                             {
                                 var messageBox = new MessageDialog("Erreur lors de l'envois du nouvelle utilisateur. Veuillez ressayer plus tard.");
@@ -66,8 +66,6 @@ namespace CallOfBeer.Views
             }
 
 
-            
-                
 
         }
     }

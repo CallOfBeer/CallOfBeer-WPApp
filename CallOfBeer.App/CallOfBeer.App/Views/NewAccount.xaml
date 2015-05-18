@@ -22,12 +22,12 @@
 
         <!-- Corp de la page -->
         <Grid Grid.Row="1">
-            <TextBox    HorizontalAlignment="Left" Margin="33,100,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="332" PlaceholderText="User Login" x:Name="User"/>
-            <TextBox    HorizontalAlignment="Left" Margin="33,160,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-0.219,0.335" Width="332" PlaceholderText="Password" x:Name="Password"/>
-            <TextBox    HorizontalAlignment="Left" Margin="33,220,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-0.219,0.335" Width="332" PlaceholderText="Confirm Password" x:Name="ConfirmPassword" BorderBrush="White"/>
-            <TextBox    HorizontalAlignment="Left" Margin="33,280,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-0.219,0.335" Width="332" PlaceholderText="Email" x:Name="Email"/>
-            <CheckBox   HorizontalAlignment="Left" Margin="33,340,0,0" Content="Accepter les conditions d'utilisation"   VerticalAlignment="Top" x:Name="Conditions"/>
-            <Button     HorizontalAlignment="Left" Margin="33,400,0,0" Content="C'est partis"   VerticalAlignment="top" Width="332" Click="Creat_Account"/>
+            <TextBox        HorizontalAlignment="Left" Margin="33,100,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="332" PlaceholderText="User Login" x:Name="User"/>
+            <PasswordBox    HorizontalAlignment="Left" Margin="33,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.219,0.335" Width="332" PlaceholderText="Password" x:Name="Password"/>
+            <PasswordBox    HorizontalAlignment="Left" Margin="33,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.219,0.335" Width="332" PlaceholderText="Confirm Password" x:Name="ConfirmPassword" BorderBrush="White"/>
+            <TextBox        HorizontalAlignment="Left" Margin="33,280,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="-0.219,0.335" Width="332" PlaceholderText="Email" x:Name="Email"/>
+            <CheckBox       HorizontalAlignment="Left" Margin="33,340,0,0" Content="Accepter les conditions d'utilisation"   VerticalAlignment="Top" x:Name="Conditions"/>
+            <Button         HorizontalAlignment="Left" Margin="33,400,0,0" Content="C'est partis"   VerticalAlignment="top" Width="332" Click="Creat_Account"/>
         </Grid>
     </Grid>
 </Page>
