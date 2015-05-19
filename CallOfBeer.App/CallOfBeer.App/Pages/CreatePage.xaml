@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="CallOfBeer.Pages.CreatePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CallOfBeer.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock x:Name="Title" Text="Call Of Beer" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <StackPanel Margin="10, 40,10,0">
+                <TextBlock Text="Création d'un évenement." FontSize="15"></TextBlock>
+                <TextBox x:Name="TXT_EventName" PlaceholderText="Nom de l'évenement"/>
+                <DatePicker x:Name="DATE"></DatePicker>
+                <TimePicker x:Name="TIME"></TimePicker>
+                <TextBox x:Name="TXT_City" PlaceholderText="Ville"/>
+                <TextBox x:Name="TXT_Address" PlaceholderText="Adresse"/>
+                <Button x:Name="BTN_Go" Content="Go !" HorizontalAlignment="Center" Tapped="BTN_Go_Tapped"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
