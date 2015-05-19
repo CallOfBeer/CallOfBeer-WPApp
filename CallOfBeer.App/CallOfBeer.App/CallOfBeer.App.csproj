@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\background.png" />
+    <Content Include="Assets\beer.png" />
     <Content Include="Assets\BeerIcon.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\ProfilIcon.png" />
