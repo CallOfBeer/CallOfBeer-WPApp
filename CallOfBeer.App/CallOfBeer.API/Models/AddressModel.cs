@@ -20,7 +20,7 @@ namespace CallOfBeer.API.Models
 
         // Longitude / Latitude
         [JsonProperty("geolocation")]
-        public Double[] Geolocation { get; set; }      
+        public Double[] Geolocation { get; set; }
     }
 
     public class AddressByGeoloc

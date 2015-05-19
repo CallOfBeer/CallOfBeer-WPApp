@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CallOfBeer.API
 {
-    public class COBProvider
+    internal class COBProvider
     {
         private const string BaseUrl = @"http://api.callofbeer.com/app_dev.php/";
         private const string ClientId = "1_uxjcq41muas4g0kwk80g0ww8cscskkgkosgkkk080w4484o0s";

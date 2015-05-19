@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CallOfBeer.API.Models
 {
-    class EventUpdate : EventPost
+    public class EventUpdate : EventPost
     {
         [JsonProperty("eventId")]
         public int Id { get; set; }
