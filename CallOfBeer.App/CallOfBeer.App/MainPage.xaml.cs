@@ -177,7 +177,7 @@ namespace CallOfBeer.App
                     {
                         EventModel eventModel = e.Parameter as EventModel;
                         // TODO traitement -> création de l'évenement
-                        int timestamp = (int)eventModel.Date.Subtract(new DateTime(1970, 1, 1, 0,0,0)).TotalSeconds;
+                        int timestamp = (int)eventModel.Date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
 
                         string address = string.Format("{0} {1}", eventModel.Address, eventModel.City);
 
@@ -256,7 +256,7 @@ namespace CallOfBeer.App
                     if (finderResult.Status == MapLocationFinderStatus.Success)
                     {
                         var selectedLocation = finderResult.Locations.First();
-                        eventModel.Address = String.Format("{0} {1}",selectedLocation.Address.StreetNumber, selectedLocation.Address.Street);
+                        eventModel.Address = String.Format("{0} {1}", selectedLocation.Address.StreetNumber, selectedLocation.Address.Street);
                         eventModel.Date = DateTime.Now;
                         eventModel.City = selectedLocation.Address.Town;
                         eventModel.Name = "Beer !";
@@ -349,7 +349,14 @@ namespace CallOfBeer.App
 
         private async void Map_CenterChanged(MapControl sender, object args)
         {
-            await this.RefreshEventList();
+            try
+            {
+                await this.RefreshEventList();
+            }
+            catch
+            {
+
+            }
         }
 
         private Popup GeneratePopup(EventGet eventGet, string addressTxt)
@@ -414,7 +421,7 @@ namespace CallOfBeer.App
             {
                 Frame.Navigate(newPageType, obj);
             }
-            
+
         }
     }
 }
