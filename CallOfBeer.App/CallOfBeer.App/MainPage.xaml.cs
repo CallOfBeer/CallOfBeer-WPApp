@@ -176,8 +176,11 @@ namespace CallOfBeer.App
                     try
                     {
                         EventModel eventModel = e.Parameter as EventModel;
-                        // TODO traitement -> création de l'évenement
-                        int timestamp = (int)eventModel.Date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
+
+                        // timestamp = dt(utc) - dt(1970) + dt - dt
+                        // timestamp = dt - dt(1970) + dt(utc) - dt et dt(utc) - dt = dtnow(utc) - dtnow
+                        int offset = (int)DateTime.UtcNow.Subtract(DateTime.Now).TotalSeconds;
+                        int timestamp = (int)eventModel.Date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds + offset;
 
                         string address = string.Format("{0} {1}", eventModel.Address, eventModel.City);
 
@@ -371,6 +374,8 @@ namespace CallOfBeer.App
                 Margin = new Thickness(20, 10, 20, 0)
             };
 
+            // Récupérer directement le champ adresse
+
             TextBlock address = new TextBlock()
             {
                 Text = "Adresse : " + addressTxt, // TODO : implémenter
@@ -379,9 +384,14 @@ namespace CallOfBeer.App
                 Margin = new Thickness(20, 10, 20, 0)
             };
 
+            // On devrait recevoir dt(utc)...
+            // dt = dt(utc) + dtnow - dtnow(utc)
+            TimeSpan offset = DateTime.Now.Subtract(DateTime.UtcNow);
+            DateTime realDate = eventGet.Date.Add(offset);
+
             TextBlock date = new TextBlock()
             {
-                Text = "Date : " + eventGet.Date.ToString("d/M/yyyy h:mm"),
+                Text = "Date : " + realDate.ToString("d/M/yyyy h:mm"),
                 FontSize = 20,
                 TextWrapping = TextWrapping.Wrap,
                 Margin = new Thickness(20, 10, 20, 0)
